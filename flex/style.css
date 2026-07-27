@@ -1,0 +1,123 @@
+*{
+    margin: 10px;
+    margin-top: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+}
+
+.menu{
+    margin: 0%;
+    margin-left: 0%;
+    display: inline;
+    justify-content: space-between;
+    text-align: center;
+    padding: 8px;
+    background-color: #ff9494;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.products{
+    margin-top: 50px;
+    color:rgb(0, 85, 255);
+}
+
+.products ul li {
+    margin-bottom: 12px;
+}
+
+.about{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.me{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    color: rgb(0, 0, 0);
+    background-color: #72d0ff;  
+    font-family: tahoma, sans-serif;
+    /* font-weight: bold; */
+    height: 100px;
+    width: 95%;
+}
+
+
+
+.head{
+    color: blueviolet;
+    font-family:'Times New Roman', Times, serif;
+}
+
+footer{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+/* BOX Model */
+.box {
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.margin-box {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;   
+    padding: 12px;
+    background-color: #f8d7da;
+    border: 3px solid #ff2c2c;
+}
+
+.border-box {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;   
+    padding: 12px;
+    border: 3px solid #000;
+    background-color: #d1ecf1;
+}
+
+.padding-box {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;    
+    padding: 12px;
+    border: 3px solid #070fff;
+    background-color: #fff3cd;
+}
+
+.content-box {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;   
+    background-color: #edb6ff;
+    border: 3px solid #ff006a;
+    text-align: center;
+    padding: 20px 40px;
+    font-weight: bold;
+}
+
+.label {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 6px;
+    background-color: rgba(255, 255, 255, 0);
+}
+.Chat {
+    position: sticky;
+    bottom: 20px;
+    right: 0px;
+    transform: translateX(-50%);
+    background-color: lightgreen;
+    padding: 10px;
+    border-radius: 20px;
+    }  
+

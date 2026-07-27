@@ -1,0 +1,49 @@
+.Parent{
+    background-color: rgb(97, 103, 255);
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+
+}
+
+.box{
+    background-color:aqua ;
+    border: 2px solid black;
+    margin: 10px;
+    text-align: center;
+    
+}
+.box1{
+    background-color: aquamarine;  
+    border: 2px solid black;
+    margin: 10px;
+    text-align: center;
+}
+
+.box2{
+    background-color: rgb(130, 254, 93);   
+    border: 2px solid black;
+    margin: 10px;
+    text-align: center;
+
+}
+
+
+@media(max-width: 1000px){
+    .Parent{
+        grid-template-columns: 1fr 1fr ;
+        grid-template-rows: 1fr 1fr;
+        background-color: rgb(255, 144, 144);
+    }
+    
+}
+@media(max-width: 700px){
+    .Parent{
+        grid-template-columns: 1fr 1fr ;
+        grid-template-rows: 1fr 1fr;
+        background-color: rgb(255, 144, 144);
+    }
+    
+}
