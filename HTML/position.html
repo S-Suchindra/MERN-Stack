@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+
+    <style>
+        * {
+            margin: 10px;
+        }
+        .container {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        .box1 {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            border: 1px solid #000;
+        }
+        .box2 {
+            display: inline-block;
+            background-color: lightblue;
+            border: 1px solid #000;
+        }
+
+    
+        .Chat {
+            position: sticky;
+            bottom: 20px;
+            right: 0px;
+            transform: translateX(-50%);
+            background-color: lightgreen;
+            padding: 10px;
+            border-radius: 20px;
+        }    
+    </style>
+</head>
+<body>
+    
+
+    <div class="container">
+        <div class="box1">Box 1</div>
+        <div class="box2">Box 2</div>
+        <div class="Chat">Hi!</div>
+    </div>
+
+</body>
+</html>

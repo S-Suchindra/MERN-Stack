@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don't Catch Me</title>
+
+<style>
+body{
+    margin:auto;
+    padding:0;
+    align-items:center;
+    font-family:Arial,sans-serif;
+    background:antiquewhite;
+}
+
+.container{
+    max-width:900px;
+    margin:auto0;
+    text-align:center;
+    padding:20px;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+.btn-container{
+    margin-bottom:15px;
+}
+
+.btn{
+    padding:10px 20px;
+    margin:5px;
+    border:none;
+    border-radius:10px;
+    background:#6df872;
+    box-shadow:0 6px #999;
+    cursor:pointer;
+    font-weight:bold;
+}
+.btn:hover{
+    background:#4de4ff;
+    border: #333 2px solid;
+    
+}
+.btn:active{
+    box-shadow:0 2px #666;
+    transform:translateY(2px);
+}
+
+.score{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.gametab{
+    width:800px;
+    height:500px;
+    margin:auto;
+    margin-left:30%;
+    position:relative;
+    background:#333;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.status{
+    position:absolute;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    background:white;
+    padding:8px 15px;
+    border-radius:20px;
+    font-weight:bold;
+    z-index:5;
+}
+
+#gameBox,#obstacleBox{
+    position:absolute;
+    width:80px;
+    height:80px;
+}
+
+#gameBox img,
+#obstacleBox img{
+    width:80px;
+    height:80px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2 >Welcome to the Game!</h2>
+
+<div class="btn-container">
+<button id="startBtn" class="btn">Start Game</button>
+<button id="resetBtn" class="btn">Reset Game</button>
+</div>
+
+<div class="score">
+Score : <span id="score">0</span>
+</div>
+
+<div class="gametab">
+
+<div class="status" id="status">
+Press Start to Play
+</div>
+
+<div id="gameBox">
+<img src="Char.png">
+</div>
+
+<div id="obstacleBox">
+<img src="obstacle.png">
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const player=document.getElementById("gameBox");
+const obstacle=document.getElementById("obstacleBox");
+
+const startBtn=document.getElementById("startBtn");
+const resetBtn=document.getElementById("resetBtn");
+
+const scoreEl=document.getElementById("score");
+const statusEl=document.getElementById("status");
+
+const GAME_WIDTH=800;
+const GAME_HEIGHT=500;
+const SIZE=80;
+
+let playerY=200;
+
+let obstacleX=720;
+let obstacleY=200;
+
+let score=0;
+
+let running=false;
+
+let obstacleTimer=null;
+
+const PLAYER_SPEED=25;
+const OBSTACLE_SPEED=8;
+
+const OBSTACLE_SPEED2=30;
+const OBSTACLE_SPEED3=50;
+const OBSTACLE_SPEED4=100;
+
+function speedup(){
+    if(score>10){
+        obstacleX-=OBSTACLE_SPEED2;
+    }
+    else{
+        obstacleX-=OBSTACLE_SPEED;
+    }
+    if(score>20){
+        obstacleX-=OBSTACLE_SPEED3;
+
+    }
+    if(score>25){
+        obstacleX-=OBSTACLE_SPEED4;
+    }
+}
+
+function updatePlayer(){
+
+    player.style.top=playerY+"px";
+
+}
+
+function updateObstacle(){
+
+    obstacle.style.left=obstacleX+"px";
+    obstacle.style.top=obstacleY+"px";
+
+}
+
+function moveUp(){
+
+    if(!running) return;
+
+    playerY-=PLAYER_SPEED;
+
+    if(playerY<0)
+        playerY=0;
+
+    updatePlayer();
+
+}
+
+function moveDown(){
+
+    if(!running) return;
+
+    playerY+=PLAYER_SPEED;
+
+    if(playerY>GAME_HEIGHT-SIZE)
+        playerY=GAME_HEIGHT-SIZE;
+
+    updatePlayer();
+
+}
+
+function moveObstacle(){
+
+    obstacleX-=OBSTACLE_SPEED;
+
+    if(obstacleX<-SIZE){
+        obstacleX=GAME_WIDTH;
+
+        obstacleY=Math.floor(Math.random()*(GAME_HEIGHT-SIZE));
+
+        score++;
+
+        scoreEl.innerHTML=score;
+
+    }
+
+    updateObstacle();
+    checkCollision();
+
+}
+
+function checkCollision(){
+
+    let playerRect=player.getBoundingClientRect();
+    let obstacleRect=obstacle.getBoundingClientRect();
+
+    if(
+
+        playerRect.left<obstacleRect.right &&
+        playerRect.right>obstacleRect.left &&
+        playerRect.top<obstacleRect.bottom &&
+        playerRect.bottom>obstacleRect.top
+
+    ){
+
+        endGame();
+
+    }
+
+}
+
+function startGame(){
+
+    if(running) return;
+
+    running=true;
+
+    statusEl.innerHTML="Avoid the Obstacle!";
+    statusEl.style.background="yellow";
+    statusEl.style.color="black";
+
+    obstacleTimer=setInterval(moveObstacle,30);
+
+}
+
+function endGame(){
+
+    running=false;
+    clearInterval(obstacleTimer);
+    statusEl.innerHTML="Game Over!";
+    statusEl.style.background="red";
+    statusEl.style.color="white";
+
+}
+
+function resetGame(){
+
+    clearInterval(obstacleTimer);
+    running=false;
+    score=0;
+    playerY=200;
+    obstacleX=720;
+    obstacleY=200;
+    scoreEl.innerHTML=score;
+
+    updatePlayer();
+
+    updateObstacle();
+
+    statusEl.innerHTML="Press Start to Play";
+    statusEl.style.background="green";
+    statusEl.style.color="white";
+
+}
+
+startBtn.onclick=startGame;
+
+resetBtn.onclick=resetGame;
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="ArrowUp"){
+
+        e.preventDefault();
+
+        moveUp();
+
+    }
+
+    if(e.key==="ArrowDown"){
+
+        e.preventDefault();
+
+        moveDown();
+
+    }
+
+});
+
+resetGame();
+
+</script>
+
+</body>
+</html>

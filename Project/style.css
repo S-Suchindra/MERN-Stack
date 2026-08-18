@@ -1,0 +1,166 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+.responsive-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Navbar */
+
+.navbar{
+    background:#131A22;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 25px;
+    position:relative;
+}
+.logo img{
+    height:x;
+    width:40px;
+}
+
+
+.menu{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+.menu li a{
+    position:relative;
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+    padding:8px 0;
+    transition:color 0.4s ease;
+}
+
+.menu li a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0;
+    height:2px;
+    background:#ff0000;
+    transition:width 0.4s ease;
+}
+
+.menu li a:hover{
+    color:#ff0000;
+}
+
+.menu li a:hover::after{
+    width:100%;
+}
+
+
+/* Hamburger */
+
+.hamburger{
+    display:none;
+    font-size:30px;
+    cursor:pointer;
+    user-select:none;
+}
+
+/* Main Content */
+
+main{
+    flex:1;
+    padding:50px;
+    text-align:center;
+}
+
+/* Footer */
+
+footer{
+    color:#000000;
+    text-align:center;
+    padding:15px;
+    font-size:12px;
+    font-family: Arial, Helvetica, sans-serif;
+    position: bottom;
+    width: 100%;
+    text-align: center;
+}
+
+/* Mobile */
+
+@media screen and (max-width:750px){
+
+    .hamburger{
+        display:block;
+    }
+
+    .menu{
+        display:none;
+        align-items: flex-start;
+        gap: 1.5rem;
+        flex-direction:column;
+        position:absolute;
+        height: 20x rem;
+        width:200px;
+        top: 0px;
+        margin-top: 66px;
+        right: 0%;
+        box-shadow: 0 10px 10px rgba(0, 0, 0 ,0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        padding:15px;
+    }
+
+    .menu.active{
+        display:flex;
+    }
+
+    .menu li{
+        margin:10px 0;
+    }
+
+
+    .login-item{
+        display:none; 
+
+    }
+    
+}
+
+.login-item{
+    display:none;
+}
+
+@media screen and (max-width:750px){
+
+    .login-item{
+        display:block;
+        margin-left:auto;
+        margin-right:15px;
+    }
+
+    .login-item a{
+        color:white;
+        text-decoration:none;
+    }
+    .login-item a:hover{
+        color:#ff0000;
+    }
+
+    .hamburger{
+        display:block;
+    }
+}
